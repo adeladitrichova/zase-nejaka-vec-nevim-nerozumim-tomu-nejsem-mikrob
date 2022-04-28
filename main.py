@@ -5,7 +5,7 @@ radio.set_group(28)
 answer = 0
 alphabet = ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-options = alphabet.count(alphabet)
+options = 24 #alphabet.count(alphabet)
 
 def on_button_pressed_a():
     global answer
@@ -33,19 +33,9 @@ input.on_button_pressed(Button.A, on_button_pressed_a)
 input.on_button_pressed(Button.B, on_button_pressed_b)
 input.on_logo_up(on_logo_is_pressed)
 
-
-
-
-
-
-
-
-
-
-
 #server
 
-radio.set_group(28)
+#radio.set_group(28)
 
 
 #klient
