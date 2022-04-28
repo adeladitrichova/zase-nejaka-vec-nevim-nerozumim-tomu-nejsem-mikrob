@@ -1,10 +1,10 @@
 #klient
-
 radio.set_group(28)
 
 answer = 0
 alphabet = ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
 options = 24 #alphabet.count(alphabet)
 
 def on_button_pressed_a():
@@ -24,7 +24,6 @@ def on_button_pressed_b():
         answer = (answer+1)%options
         basic.show_string(alphabet[answer])
     basic.clear_screen()
-
 
 def on_logo_is_pressed():
     radio.send_string(alphabet[answer])
