@@ -7,6 +7,7 @@ alphabet = ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 
 options = 24 #alphabet.count(alphabet)
 
+
 def on_button_pressed_a():
     global answer
     if answer == 0:
@@ -27,30 +28,40 @@ def on_button_pressed_b():
 
 def on_logo_is_pressed():
     radio.send_string(alphabet[answer])
+    basic.show_string("SENT")
 
 input.on_button_pressed(Button.A, on_button_pressed_a)
 input.on_button_pressed(Button.B, on_button_pressed_b)
 input.on_logo_up(on_logo_is_pressed)
 
-#server
-
-#radio.set_group(28)
-
-
-#klient
-#kdykoliv muze odeslat hlas
-#vzdy se zapisuje posledni odpoved a zapisuje se jen jedna odpoved
 
 #server
-#prepina stav >prijima< x >neprijima<
-#zapisuje se vzdy jedna odpoved od kazdeho
-#zobrazi, kolik lidi dalo A, B, C
-#vynuluje svoji "pamet" pak proste yk
 
+radio.set_group(28)
 
-#A 65
-#B 66
-#C 67
-#D 68
-#odpovedi v listu, aby byl neomezemy pocet odpovedi jakoze ykykykykykykykykyk
-#provest listu v listu
+receiving = True
+answers = []
+
+def on_received_string(receivedString):
+    if receiving == True:
+        answers.push(receivedString)
+        
+def on_logo_pressed():
+    global receiving
+    if receiving == True:
+        receiving = False
+    else:
+        receiving = True
+
+def show_results():
+    options = []
+    for i in answers:
+        if i not in options:
+            options.append(i)
+    for i in options:
+        basic.show_string(i)
+        pause(1000)
+        basic.show_number(answers.count(i))
+        pause(1500)
+radio.on_received_string(on_received_string)
+input.on_logo_event(TouchButtonEvent.PRESSED, on_logo_pressed)

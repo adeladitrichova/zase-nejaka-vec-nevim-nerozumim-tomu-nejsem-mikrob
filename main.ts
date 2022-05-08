@@ -29,3 +29,26 @@ input.onButtonPressed(Button.B, function on_button_pressed_b() {
 input.onLogoUp(function on_logo_is_pressed() {
     radio.sendString(alphabet[answer])
 })
+// server
+radio.setGroup(28)
+let receiving = true
+let answers = []
+function show_results() {
+    options
+}
+
+radio.onReceivedString(function on_received_string(receivedString: string) {
+    if (receiving == true) {
+        answers.push(receivedString)
+    }
+    
+})
+input.onLogoEvent(TouchButtonEvent.Pressed, function on_logo_pressed() {
+    
+    if (receiving == true) {
+        receiving = false
+    } else {
+        receiving = true
+    }
+    
+})
